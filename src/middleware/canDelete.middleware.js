@@ -1,4 +1,3 @@
-import UserAccount from "../models/userAccount.model.js";
 
 const deleteUser = (req, res, next) => {
     const principal = req.principal;

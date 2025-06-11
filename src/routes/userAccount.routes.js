@@ -1,14 +1,15 @@
 import express from "express";
 import userAccountController from "../controllers/userAccount.controller.js";
 import validate from "../middleware/validation.middleware.js";
-import deleteUser from "../middleware/delete.middleware.js";
+import deleteUser from "../middleware/canDelete.middleware.js";
+import updateUser from "../middleware/canUpdate.middleware.js";
 
 const router = express.Router();
 
 router.post('/register', validate('register') , userAccountController.register);
 router.post('/login', userAccountController.login);
 router.delete('/user/:user', deleteUser, userAccountController.deleteUser);
-router.patch('/user/:user', validate('updateUser'), userAccountController.updateUser);
+router.patch('/user/:user', updateUser, validate('updateUser'), userAccountController.updateUser);
 router.patch('/user/:user/role/:role', validate('changeRoles', 'params'), userAccountController.addRole);
 router.delete('/user/:user/role/:role', validate('changeRoles', 'params'), userAccountController.deleteRole);
 router.patch('/password', userAccountController.changePassword);
