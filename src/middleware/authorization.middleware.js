@@ -38,7 +38,7 @@ class Authorization {
             const postId = req.params[postIdParam];
             const post = await Post.findById(postId);
             if (!post) {
-                throw new Error(`Post with id ${PostId} not found`);
+                throw new Error(`Post with id ${postId} not found`);
             }
             const isAuthor = post.author === req.principal.username;
             const hasRole = req.principal.roles.includes(role);
