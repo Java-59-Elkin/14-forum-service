@@ -57,7 +57,8 @@ class PostService {
             throw new Error(`Post with id ${id} not found`);
         }
         if (data.tags) {
-            data.tags.push(...post.tags);
+            const existingTags = post.tags;
+            data.tags = Array.from(new Set([...existingTags, ...data.tags]));
         }
         return await postRepository.updatePost(id, data);
     }
