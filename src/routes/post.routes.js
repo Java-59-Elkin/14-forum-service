@@ -17,7 +17,7 @@ router.patch('/post/:id/comment/:commenter',
     authorization.isOwner('commenter'),
     postController.addComment);
 router.delete('/post/:id',
-    authorization.isOwnerOrHasRole('user', 'Moderator'),
+    authorization.isPostAuthorOrHasRole('id', 'Moderator'),
     postController.deletePost);
 router.get('/posts/tags', postController.getPostsByTags);
 router.get('/posts/period', validate('dateFormat', 'query'), postController.getPostsByPeriod);
