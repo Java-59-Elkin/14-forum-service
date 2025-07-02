@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from "mongoose";
 import postRoutes from "./routes/post.routes.js";
 import errorHandler from "./middleware/error.middleware.js";
@@ -7,10 +8,10 @@ import userAccountRoutes from "./routes/userAccount.routes.js";
 import authentication from './middleware/authentication.middleware.js';
 
 
-
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(authentication);
 app.use('/forum', postRoutes);
 app.use('/account', userAccountRoutes);
