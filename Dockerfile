@@ -1,20 +1,15 @@
-# Базовый образ
-FROM node:22
+FROM node:22.12.0-alpine
 
-# Указываем рабочую директорию внутри контейнера
+LABEL authors="elkinms"
+
 WORKDIR /app
 
-# Копируем package.json и package-lock.json
 COPY package*.json ./
 
-# Устанавливаем зависимости
 RUN npm install
 
-# Копируем остальные исходники
-COPY . .
+COPY ./src ./src
 
-# Говорим Docker, какой порт открыт в приложении
 EXPOSE 8080
-
 
 CMD ["npm", "start"]
